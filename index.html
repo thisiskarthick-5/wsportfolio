@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scale-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .scale-hover:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .skill-bar {
+            width: 0%;
+            transition: width 2s ease-out;
+        }
+        
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .project-overlay {
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .parallax {
+            transform: translateY(0);
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-900">Alex Chen</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors duration-300">About</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-primary transition-colors duration-300">Portfolio</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                        <i class="ri-linkedin-fill ri-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors duration-300">
+                        <i class="ri-github-fill ri-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen hero-bg flex items-center relative overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20minimalist%20workspace%20with%20floating%20geometric%20shapes%2C%20soft%20lighting%2C%20clean%20white%20background%20with%20subtle%20blue%20and%20purple%20gradients%2C%20professional%20creative%20environment%2C%20high-end%20design%20studio%20aesthetic%2C%20floating%20elements%2C%20contemporary%20architecture&width=1920&height=1080&seq=hero001&orientation=landscape')">
+        <div class="absolute inset-0 bg-white bg-opacity-60"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Creative
+                        <span class="text-primary block">Designer</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 typing" id="typingText">Crafting digital experiences that inspire and engage</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-primary text-white px-8 py-4 !rounded-button font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
+                            View My Work
+                        </button>
+                        <button class="border-2 border-gray-900 text-gray-900 px-8 py-4 !rounded-button font-semibold hover:bg-gray-900 hover:text-white transition-all duration-300 whitespace-nowrap">
+                            Download CV
+                        </button>
+                    </div>
+                </div>
+                <div class="relative fade-in">
+                    <div class="floating">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20creative%20designer%20portrait%2C%20modern%20studio%20lighting%2C%20clean%20minimalist%20background%2C%20confident%20pose%2C%20contemporary%20fashion%2C%20high-quality%20headshot%2C%20creative%20professional%2C%20design%20industry%2C%20artistic%20composition&width=600&height=600&seq=portrait001&orientation=squarish" alt="Alex Chen" class="w-80 h-80 object-cover rounded-3xl mx-auto shadow-2xl">
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-full floating opacity-20"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary rounded-full floating opacity-30" style="animation-delay: -2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">I'm a passionate creative designer with over 8 years of experience in digital design, branding, and user experience. I believe in creating meaningful connections through thoughtful design.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">My Journey</h3>
+                    <p class="text-gray-600 mb-6">Started as a graphic designer in 2016, I've evolved into a multidisciplinary creative professional. My work spans across digital products, brand identities, and immersive experiences for clients ranging from startups to Fortune 500 companies.</p>
+                    <p class="text-gray-600 mb-8">I'm driven by the challenge of solving complex problems through simple, elegant solutions that resonate with users and achieve business goals.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-900">UI/UX Design</span>
+                                <span class="text-gray-600">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-primary h-2 rounded-full" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-900">Brand Design</span>
+                                <span class="text-gray-600">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-secondary h-2 rounded-full" data-width="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-900">Web Development</span>
+                                <span class="text-gray-600">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-primary h-2 rounded-full" data-width="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-900">Motion Graphics</span>
+                                <span class="text-gray-600">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-secondary h-2 rounded-full" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <img src="https://readdy.ai/api/search-image?query=creative%20workspace%20setup%20with%20modern%20design%20tools%2C%20clean%20desk%20organization%2C%20professional%20equipment%2C%20inspiring%20creative%20environment%2C%20contemporary%20office%20design%2C%20design%20studio%20atmosphere%2C%20minimalist%20workspace%20aesthetic&width=600&height=700&seq=workspace001&orientation=portrait" alt="Workspace" class="w-full h-96 object-cover object-top rounded-2xl shadow-lg">
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-lg mx-auto mb-4">
+                                <i class="ri-trophy-line ri-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 text-2xl mb-2">150+</h4>
+                            <p class="text-gray-600">Projects Completed</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-lg mx-auto mb-4">
+                                <i class="ri-team-line ri-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 text-2xl mb-2">80+</h4>
+                            <p class="text-gray-600">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Work</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A selection of my recent projects showcasing various design disciplines and creative solutions.</p>
+            </div>
+            
+            <div class="flex justify-center mb-12 fade-in">
+                <div class="flex space-x-2 bg-gray-100 p-1 rounded-full">
+                    <button class="px-6 py-2 rounded-full bg-primary text-white font-medium transition-all duration-300 filter-btn whitespace-nowrap" data-filter="all">All Work</button>
+                    <button class="px-6 py-2 rounded-full text-gray-600 hover:text-primary transition-all duration-300 filter-btn whitespace-nowrap" data-filter="web">Web Design</button>
+                    <button class="px-6 py-2 rounded-full text-gray-600 hover:text-primary transition-all duration-300 filter-btn whitespace-nowrap" data-filter="brand">Branding</button>
+                    <button class="px-6 py-2 rounded-full text-gray-600 hover:text-primary transition-all duration-300 filter-btn whitespace-nowrap" data-filter="app">Mobile App</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="web">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20design%20on%20laptop%20screen%2C%20clean%20interface%2C%20professional%20product%20showcase%2C%20contemporary%20web%20design%2C%20minimalist%20layout%2C%20high-quality%20digital%20design%2C%20user-friendly%20interface%2C%20modern%20typography&width=600&height=400&seq=project001&orientation=landscape" alt="E-commerce Platform" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                            <p class="mb-4">Modern shopping experience</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="brand">
+                    <img src="https://readdy.ai/api/search-image?query=premium%20brand%20identity%20design%20showcase%2C%20elegant%20logo%20presentation%2C%20sophisticated%20branding%20materials%2C%20business%20cards%20and%20letterhead%2C%20luxury%20brand%20aesthetic%2C%20professional%20identity%20design%2C%20modern%20corporate%20branding&width=600&height=400&seq=project002&orientation=landscape" alt="Brand Identity" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Luxe Brand Identity</h3>
+                            <p class="mb-4">Complete brand system</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="app">
+                    <img src="https://readdy.ai/api/search-image?query=mobile%20app%20interface%20design%20on%20smartphone%2C%20clean%20UI%20design%2C%20modern%20app%20screens%2C%20user-friendly%20mobile%20interface%2C%20contemporary%20app%20design%2C%20sleek%20mobile%20application%2C%20professional%20app%20mockup&width=600&height=400&seq=project003&orientation=landscape" alt="Mobile App" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Fitness Tracking App</h3>
+                            <p class="mb-4">Health & wellness platform</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="web">
+                    <img src="https://readdy.ai/api/search-image?query=corporate%20website%20design%20on%20desktop%20computer%2C%20professional%20business%20website%2C%20clean%20corporate%20interface%2C%20modern%20company%20website%2C%20business%20web%20design%2C%20professional%20online%20presence&width=600&height=400&seq=project004&orientation=landscape" alt="Corporate Website" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Corporate Website</h3>
+                            <p class="mb-4">Professional business presence</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="brand">
+                    <img src="https://readdy.ai/api/search-image?query=restaurant%20branding%20design%2C%20menu%20design%20and%20brand%20materials%2C%20food%20service%20branding%2C%20elegant%20restaurant%20identity%2C%20culinary%20brand%20design%2C%20hospitality%20branding%20materials%2C%20sophisticated%20food%20branding&width=600&height=400&seq=project005&orientation=landscape" alt="Restaurant Branding" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Restaurant Branding</h3>
+                            <p class="mb-4">Culinary brand experience</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card relative group cursor-pointer fade-in scale-hover" data-category="app">
+                    <img src="https://readdy.ai/api/search-image?query=travel%20app%20interface%20design%2C%20vacation%20planning%20mobile%20app%2C%20travel%20booking%20interface%2C%20modern%20travel%20app%20screens%2C%20tourism%20mobile%20application%2C%20trip%20planning%20app%20design&width=600&height=400&seq=project006&orientation=landscape" alt="Travel App" class="w-full h-64 object-cover object-top rounded-xl">
+                    <div class="project-overlay absolute inset-0 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h3 class="text-xl font-bold mb-2">Travel Planning App</h3>
+                            <p class="mb-4">Seamless trip organization</p>
+                            <div class="w-8 h-8 flex items-center justify-center bg-white text-primary rounded-full mx-auto">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Let's Work Together</h2>
+                <p class="text-xl text-gray-600">Ready to bring your vision to life? I'd love to hear about your project and discuss how we can create something amazing together.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-lg">
+                                <i class="ri-mail-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Email</p>
+                                <p class="text-gray-600">alex.chen@email.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-lg">
+                                <i class="ri-phone-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Phone</p>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-lg">
+                                <i class="ri-map-pin-line ri-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Location</p>
+                                <p class="text-gray-600">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-gray-900 mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-lg hover:bg-primary transition-colors duration-300">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-lg hover:bg-primary transition-colors duration-300">
+                                <i class="ri-github-fill"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-lg hover:bg-primary transition-colors duration-300">
+                                <i class="ri-dribbble-fill"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-lg hover:bg-primary transition-colors duration-300">
+                                <i class="ri-behance-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <form class="space-y-6" id="contactForm">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border-none bg-white rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border-none bg-white rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <input type="text" placeholder="Subject" class="w-full px-4 py-3 border-none bg-white rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 border-none bg-white rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-4 !rounded-button font-semibold hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <div class="text-2xl font-bold mb-4">Alex Chen</div>
+                <p class="text-gray-400 mb-6">Creative Designer & Digital Artist</p>
+                <p class="text-gray-500">&copy; 2024 Alex Chen. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 opacity-0 pointer-events-none">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <script id="navigation-scroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('nav-blur');
+                    backToTop.style.opacity = '1';
+                    backToTop.style.pointerEvents = 'auto';
+                } else {
+                    navbar.classList.remove('nav-blur');
+                    backToTop.style.opacity = '0';
+                    backToTop.style.pointerEvents = 'none';
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+
+    <script id="scroll-animations">
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script id="skill-bars-animation">
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            
+            const skillObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 500);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
+        });
+    </script>
+
+    <script id="portfolio-filter">
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white');
+                        b.classList.add('text-gray-600');
+                    });
+                    
+                    this.classList.add('bg-primary', 'text-white');
+                    this.classList.remove('text-gray-600');
+                    
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script id="typing-effect">
+        document.addEventListener('DOMContentLoaded', function() {
+            const typingText = document.getElementById('typingText');
+            const text = 'Crafting digital experiences that inspire and engage';
+            let index = 0;
+            
+            typingText.textContent = '';
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    typingText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 50);
+                } else {
+                    typingText.classList.remove('typing');
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+
+    <script id="smooth-navigation">
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="form-animation">
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.textContent = 'Message Sent!';
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        form.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
